@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}New Post{% endblock %}
+
+{% block content %}
+
+<h1>New Post</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {#  {{ form.as_p }} #}
+
+    {% for f in form %}
+    
+        {% if f.errors %}
+            {% for error in f.errors %}
+                {{error}}
+            {% endfor %}
+        {% endif %}
+
+    <p>
+        {{f.label}} {{f}}
+    </p>
+    {% endfor %}
+
+    <button type="submit">Create</button>
+</form>
+
+
+{% endblock %}
